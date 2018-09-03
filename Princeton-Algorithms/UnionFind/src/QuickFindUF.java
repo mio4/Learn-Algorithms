@@ -1,3 +1,5 @@
+//两个节点处于一个连通分量下当且仅当p和q在id数组中的值相同
+//不足之处：对于N个节点的N次union操作时间复杂度为O（n2）
 public class QuickFindUF {
     private int[] id;
 
@@ -20,3 +22,4 @@ public class QuickFindUF {
         }
     }
 }
+
