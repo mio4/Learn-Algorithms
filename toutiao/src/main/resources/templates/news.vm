@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+    Hello VM.
+
+    #*
+        这里是注释部分
+     *#
+
+    ##传参
+    $!{value}
+    ${value}
+    ${value2}
+    $!{value3}
+
+    #foreach ($color in $colors)
+        Color $!{foreach.index}/$!{foreach.count}: $!{color}
+    #end
+
+    #foreach($key in $map.keySet())
+        Number $!{foreach.index}/$!{foreach.count}: $!{key} $map.get($key)
+    #end
+
+    #foreach ($color in $colors)
+        Color $!{foreach.index} $!{color}
+    #end
+
+    ## 自定义类
+    $!{user.name}
+    $!{user.id}
+
+
+    #set($title = "nothing here")
+
+    Include: #include("header.vm") <br>
+    Parse: #parse("header.vm")
+
+    宏函数：
+    #macro (render_color, $color, $index)
+        Color by macro $index,$color
+    #end
+
+#foreach($color in $colors)
+    #render_color($color,$foreach.index)
+#end
+
+    #set($hello = "hello value")
+    #set($hwolrd1 = "${hello} world!")
+    #set($hwolrd2 = '${hello} world!')
+
+    hworld" $hwolrd1
+    hworld" $hwolrd2
+
+
+</pre>
+</body>
+</html>
