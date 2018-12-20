@@ -25,7 +25,7 @@ public class IndexController {
     @Autowired
     private toutiaoService toutiaoService;
 
-    @RequestMapping(value = {"/","/index","/index2"})
+    @RequestMapping(value = {"/"})
     @ResponseBody
     public String index(HttpSession session){
         logger.info("visit index");
