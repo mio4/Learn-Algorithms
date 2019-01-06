@@ -41,7 +41,7 @@
 
 ### 1. 首页
 
-![1546780680971](readme_image\index.png)
+![1546780680971](https://github.com/mio4/MyToutiao/blob/master/readme_image/index.png)
 
 
 
