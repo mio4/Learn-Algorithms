@@ -14,7 +14,7 @@ CREATE TABLE `news`(
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
   `id` int(11) primary key auto_increment,
-  `name` varchar(64),
+  `username` varchar(64),
   `password` varchar(64),
   `salt` varchar(16),
   `head_url` varchar(64)
