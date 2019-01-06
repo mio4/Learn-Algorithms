@@ -41,4 +41,8 @@ public class UserService {
         userDao.addUser(user);
         return map;
     }
+
+    public Map<String,Object> register(String username, String password) {
+        return null;
+    }
 }

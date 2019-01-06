@@ -24,7 +24,7 @@ public class HomeController {
 
     private List<ViewObject> getNews(int userId, int offset, int limit){
         List<News> newsList = newsService.getLatestNews(userId,offset,limit);
-        List<ViewObject> vos = new ArrayList<>();
+        List<ViewObject> vos = new ArrayList<ViewObject>();
         for(News news : newsList){
             ViewObject vo = new ViewObject();
             vo.set("news",news);
