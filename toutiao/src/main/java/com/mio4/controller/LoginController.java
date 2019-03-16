@@ -30,8 +30,9 @@ public class LoginController {
                            @RequestParam("password") String password,
                            @RequestParam(value = "rember", defaultValue = "0") int rememberme,
                            HttpServletResponse response){
-        userService.addUser(username,password);
         try {
+            System.out.println("You arrived login");
+
             Map<String, Object> map = userService.register(username, password);
             if (map.containsKey("ticket")) {
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());

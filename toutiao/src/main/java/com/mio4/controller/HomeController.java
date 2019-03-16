@@ -36,6 +36,7 @@ public class HomeController {
 
     @RequestMapping(value = "/index", method = {RequestMethod.GET, RequestMethod.POST})
     public String Index(Model model){
+        System.out.println("You arrived index");
         model.addAttribute("vos",getNews(0,0,10));
         return "home";
     }

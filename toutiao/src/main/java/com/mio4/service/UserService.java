@@ -21,7 +21,13 @@ public class UserService {
         return userDao.selectById(id);
     }
 
-    public Map<String,Object> addUser(String username, String password){
+    /**
+     * 用户注册
+     * @param username
+     * @param password
+     * @return
+     */
+    public Map<String,Object> register(String username, String password){
         Map<String,Object> map = new HashMap<String,Object>();
         if(StringUtils.isBlank(username)){
             map.put("msgname","用户名不能为空");
@@ -39,10 +45,24 @@ public class UserService {
         user.setHeadUrl(String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000)));
         user.setPassword(ToutiaoUtil.MD5(password+user.getSalt()));
         userDao.addUser(user);
+        //TODO 登录
         return map;
     }
-
-    public Map<String,Object> register(String username, String password) {
-        return null;
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
