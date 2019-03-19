@@ -57,7 +57,7 @@ public class IndexController {
 
         User user = new User();
         user.setId(1);
-        user.setName("Jack");
+        user.setUsername("Jack");
         model.addAttribute("user",user);
         return "news";
     }

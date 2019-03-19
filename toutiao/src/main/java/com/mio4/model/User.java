@@ -1,20 +1,21 @@
 package com.mio4.model;
 
 /**
- * CREATE TABLE `user`(
- *   `id` int(11) primary key,
- *   `name` varchar(64),
- *   `password` varchar(64),
- *   `salt` varchar(16),
- *   `head_url` varchar(32)
- * )ENGINE = InnoDB,charset=UTF8;
+ * CREATE TABLE `user` (
+ *   `id` int(11) NOT NULL AUTO_INCREMENT,
+ *   `username` varchar(64) DEFAULT NULL,
+ *   `password` varchar(64) DEFAULT NULL,
+ *   `salt` varchar(16) DEFAULT NULL,
+ *   `head_url` varchar(64) DEFAULT NULL,
+ *   PRIMARY KEY (`id`)
+ * ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
  */
 public class User {
     private Integer id;
-    private String name;
+    private String username;
     private String password;
     private String salt;
-    private String headUrl;
+    private String head_url;
 
 
     public User(){
@@ -25,10 +26,10 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
-                ", headUrl='" + headUrl + '\'' +
+                ", head_url='" + head_url + '\'' +
                 '}';
     }
 
@@ -40,12 +41,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -64,11 +65,11 @@ public class User {
         this.salt = salt;
     }
 
-    public String getHeadUrl() {
-        return headUrl;
+    public String getHead_url() {
+        return head_url;
     }
 
-    public void setHeadUrl(String headUrl) {
-        this.headUrl = headUrl;
+    public void setHead_url(String head_url) {
+        this.head_url = head_url;
     }
 }

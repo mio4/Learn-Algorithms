@@ -1,10 +1,11 @@
 package com.mio4;
 
+import com.mio4.dao.LoginTicketDao;
 import com.mio4.dao.NewsDao;
 import com.mio4.dao.UserDao;
+import com.mio4.model.LoginTicket;
 import com.mio4.model.News;
 import com.mio4.model.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,21 @@ import java.util.Random;
 @Sql("/InitSchema.sql")
 public class InitDatabaseTest implements Serializable {
     @Autowired
-    private UserDao userDao;
+    UserDao userDao;
 
     @Autowired
-    private NewsDao newsDao;
+    NewsDao newsDao;
+
+    @Autowired
+    LoginTicketDao loginTicketDao;
 
     @Test
     public void initData(){
         Random random = new Random();
         for(int i=0; i < 11; i++){
             User user = new User();
-            user.setHeadUrl(String.format("http://images.nowcoder.com/head/%dt.png", random.nextInt(1000)));
-            user.setName(String.format("USER%d", i));
+            user.setHead_url(String.format("http://images.nowcoder.com/head/%dt.png", random.nextInt(1000)));
+            user.setUsername(String.format("USER%d", i));
             user.setPassword("");
             user.setSalt("");
             userDao.addUser(user);
@@ -52,17 +56,16 @@ public class InitDatabaseTest implements Serializable {
             user.setPassword("new password");
             userDao.updateUser(user);
 
-        }
+            //ticket测试
+            LoginTicket ticket = new LoginTicket();
+            ticket.setStatus(0);
+            ticket.setUserId(100);
+            ticket.setExpired(date);
+            ticket.setTicket(String.format("TICKET%d",i+1));
+            loginTicketDao.addTicket(ticket);
 
-        User user = userDao.selectById(1);
-        Assert.assertEquals("new password",userDao.selectById(1).getPassword());
-        userDao.deleteById(1);
-        Assert.assertNull(userDao.selectById(1));
+            loginTicketDao.updateStatus(ticket.getTicket(),2);
+        }
     }
 
-//    @SelectTest
-//    public void testSelectUser(){
-//        User user = userDao.selectById(2);
-//        System.out.println(user);
-//    }
 }
