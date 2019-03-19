@@ -1,5 +1,6 @@
 package com.mio4.controller;
 
+import com.mio4.model.HostHolder;
 import com.mio4.model.News;
 import com.mio4.model.ViewObject;
 import com.mio4.service.NewsService;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,9 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HostHolder hostHolder;
 
     private List<ViewObject> getNews(int userId, int offset, int limit){
         List<News> newsList = newsService.getLatestNews(userId,offset,limit);
@@ -34,20 +39,18 @@ public class HomeController {
         return vos;
     }
 
-    @RequestMapping(value = "/index", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = {"/index","/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String Index(Model model){
-        System.out.println("You arrived index");
         model.addAttribute("vos",getNews(0,0,10));
         return "home";
     }
 
     @RequestMapping(value = "/user/{userId}/", method = {RequestMethod.GET, RequestMethod.POST})
     public String userIndex(Model model,
-                            @PathVariable("userId") int userId){ //不同的用户对应不同的页面
+                            @PathVariable("userId") int userId,
+                            @RequestParam(value = "pop",defaultValue = "0") int pop){ //不同的用户对应不同的页面
         model.addAttribute("vos",getNews(0,0,10));
+        model.addAttribute("pop",pop);
         return "home";
     }
-
-
-
 }
